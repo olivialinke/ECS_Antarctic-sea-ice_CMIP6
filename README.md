@@ -138,8 +138,28 @@ with dimensions
 - Includes handling of model-specific grid conventions (dimension naming only); no regridding is performed.
 - Individual model files are merged into a single dataset and removed during the final cleanup step.
 
+## 3. Observational sea ice data
 
-### 3. `compute_feedback-TOA-fluxes/<feedback>.py`
+Observational sea-ice concentration (SIC) products were downloaded from satellite-based datasets consistent with those used by Roach et al. (2020) for the evaluation of CMIP6 Antarctic sea ice.
+
+SIC data were obtained from the Copernicus Climate Data Store for OSI SAF ([https://doi.org/10.24381/cds.3cd8b812](https://doi.org/10.24381/cds.3cd8b812)), and from the National Snow and Ice Data Center for the NASA Team ([https://doi.org/10.5067/MPYG15WAA4WX](https://doi.org/10.5067/MPYG15WAA4WX)) and Bootstrap ([https://doi.org/10.5067/X5LG68MH013O](https://doi.org/10.5067/X5LG68MH013O)) algorithms.
+
+The downloaded monthly SIC files were time-merged prior to the calculation of sea-ice diagnostics.
+
+`preprocess_sea_ice_obs.py`
+
+Calculates Antarctic sea-ice area (SIA) and sea-ice extent (SIE) from the time-merged observational SIC datasets.
+
+The script:
+
+- calculates sea-ice area (SIA) from fractional SIC using the native 25 km grid-cell area,
+- calculates sea-ice extent (SIE) using a 15% SIC threshold,
+- restricts the analysis to 1979–2024,
+- calculates annual-mean SIA and SIE time series for comparison with CMIP6 simulations,
+- combines the three observational products into a single NetCDF dataset while retaining the individual products separately.
+
+
+### 4. `compute_feedback-TOA-fluxes/<feedback>.py`
 
 Computes TOA radiative feedback fields for individual climate feedback
 components using the radiative kernel method implemented in the
@@ -210,7 +230,7 @@ WVF_<model>_<kernel>.nc
 WVF_cs_<model>_<kernel>.nc
 ```
 
-### 4) `compute_climate_feedbacks.py` and `compute_climate_feedbacks_on-grid.py`
+### 5. `compute_climate_feedbacks.py` and `compute_climate_feedbacks_on-grid.py`
 
 Computes climate feedback parameters, effective radiative forcing (ERF), and equilibrium climate sensitivity (ECS) from the pre-calculated TOA feedback responses.
 
@@ -240,28 +260,6 @@ The scripts apply Gregory regression methods to CMIP6 abrupt-4xCO₂ experiments
 Outputs are saved as NetCDF datasets containing climate sensitivity, forcing, and feedback diagnostics for models and kernels with the required input data.
 
 Methods follow Gregory et al. (2004) for ECS/ERF estimation and Soden et al. (2008) for cloud feedback decomposition.
-
-## 5) Observational sea ice data
-
-Observational sea-ice concentration (SIC) products were downloaded from satellite-based datasets consistent with those used by Roach et al. (2020) for the evaluation of CMIP6 Antarctic sea ice.
-
-SIC data were obtained from the Copernicus Climate Data Store for OSI SAF ([https://doi.org/10.24381/cds.3cd8b812](https://doi.org/10.24381/cds.3cd8b812)), and from the National Snow and Ice Data Center for the NASA Team ([https://doi.org/10.5067/MPYG15WAA4WX](https://doi.org/10.5067/MPYG15WAA4WX)) and Bootstrap ([https://doi.org/10.5067/X5LG68MH013O](https://doi.org/10.5067/X5LG68MH013O)) algorithms.
-
-The downloaded monthly SIC files were time-merged prior to the calculation of sea-ice diagnostics.
-
-`preprocess_sea_ice_obs.py`
-
-Calculates Antarctic sea-ice area (SIA) and sea-ice extent (SIE) from the time-merged observational SIC datasets.
-
-The script:
-
-- calculates sea-ice area (SIA) from fractional SIC using the native 25 km grid-cell area,
-- calculates sea-ice extent (SIE) using a 15% SIC threshold,
-- restricts the analysis to 1979–2024,
-- calculates annual-mean SIA and SIE time series for comparison with CMIP6 simulations,
-- combines the three observational products into a single NetCDF dataset while retaining the individual products separately.
-
-
 
 ### OPTIONAL `Gregory-ECS_preprocessing.py`
 
