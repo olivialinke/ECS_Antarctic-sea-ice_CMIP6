@@ -58,7 +58,7 @@ warnings.filterwarnings("ignore")
 # =================================
 
 # Directory containing the preprocessed CMIP data.
-DIR = "/work/bb1036/b381106/data_output"
+DIR = "/path/to/data_output"
 # Directory where the calculated diagnostics are saved.
 SAVE = os.path.join(DIR, "feedbacks")
 

@@ -43,14 +43,12 @@ warnings.filterwarnings("ignore")
 # Paths and settings
 # =================================
 
-# Directory containing the preprocessed CMIP6 radiative fluxes.
-DIR = "/work/bb1036/b381106/data_output"
-
+# Directory containing the preprocessed CMIP data.
+DIR = "/path/to/data_output"
 # Directory where the calculated feedback fields are saved.
 SAVE = os.path.join(DIR, "feedback_toa_flux")
 
 os.makedirs(SAVE, exist_ok=True)
-
 
 # Radiative kernels used for the surface-albedo feedback calculation.
 kernels = [

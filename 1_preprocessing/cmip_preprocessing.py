@@ -130,9 +130,9 @@ table_id = "Amon" # SImon, Amon
 var = "tas" # tas, ps, ta, hus, rsus, rsds, rlut, rlutcs, rsut, rsutcs, rsdt
 
 # Output directory
-OUT = "/work/bb1036/b381106/data_output"
-# DKRZ CMIP data pool
-ROOT = "/pool/data/CMIP6/data/CMIP/"
+OUT = "/path/to/data_output"
+# set up your own file path here or use DKRZ CMIP data pool
+ROOT = "/path/to/data/pool/"
 
 # Search pattern for the requested experiment, table, and variable
 path = (

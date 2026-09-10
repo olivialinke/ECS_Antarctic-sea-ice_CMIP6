@@ -44,11 +44,11 @@ warnings.filterwarnings("ignore")
 # ====================================
 # Configuration
 # ====================================
-EXP = "abrupt-4xCO2"
-# DKRZ CMIP data pool
-CMIP_ROOT = "/pool/data/CMIP6/data/CMIP/"
-# Working/output directory
-WORK_DIR = "/work/bb1036/b381106/data_output"
+EXP = "abrupt-4xCO2" # piControl, abrupt-4xCO2
+# set up your own file path here or use DKRZ CMIP data pool
+CMIP_ROOT = "/path/to/data/pool/"
+# Directory containing the preprocessed CMIP data.
+WORK_DIR = "/path/to/data_output"
 # Output directory for the final multi-model dataset
 OUTPUT_DIR = os.path.join(WORK_DIR, "sea_ice")
 # Set to True to produce diagnostic plots during processing

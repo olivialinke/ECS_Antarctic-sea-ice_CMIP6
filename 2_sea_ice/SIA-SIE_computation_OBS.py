@@ -42,7 +42,7 @@ import xarray as xr
 # =================================
 
 # Directory containing the time-merged observational SIC datasets.
-DIR = "/work/bb1036/b381106/data_output/obs"
+DIR = "/path/to/data_output/obs"
 
 # Analysis period.
 YEAR_START = 1979

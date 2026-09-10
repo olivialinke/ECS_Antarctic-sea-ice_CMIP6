@@ -37,13 +37,12 @@ warnings.filterwarnings("ignore")
 # Paths and settings
 # =================================
 
-# Directory containing the preprocessed CMIP6 diagnostics.
-DIR = "/work/bb1036/b381106/data_output"
-# Directory containing the radiative-kernel-derived TOA feedback fields.
+# Directory containing the preprocessed CMIP data.
+DIR = "/path/to/data_output"
+# Directory containing the preprocessed radiative-kernel-derived TOA feedback fields.
 FDBFLX_DIR = os.path.join(DIR, "feedback_toa_flux")
-# Directory containing the final feedback datasets.
+# Directory to store the final feedback datasets.
 SAVE_DIR = os.path.join(DIR, "feedbacks")
-# Directory containing the final multi-model output.
 
 os.makedirs(SAVE_DIR, exist_ok=True)
 

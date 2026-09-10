@@ -46,16 +46,14 @@ warnings.filterwarnings("ignore")
 # Paths and settings
 # =================================
 
-# Directory containing the preprocessed CMIP6 diagnostics.
-DIR = "/work/bb1036/b381106/data_output"
-
-# Directory containing the kernel-derived TOA feedback fields.
+# Directory containing the preprocessed CMIP data.
+DIR = "/path/to/data_output"
+# Directory containing the preprocessed radiative-kernel-derived TOA feedback fields.
 FDBFLX_DIR = os.path.join(DIR, "feedback_toa_flux")
+# Directory to store the final feedback datasets.
+SAVE_DIR = os.path.join(DIR, "feedbacks")
 
-# Directory where the spatially resolved feedback parameters are saved.
-SAVE = os.path.join(DIR, "feedbacks")
-
-os.makedirs(SAVE, exist_ok=True)
+os.makedirs(SAVE_DIR, exist_ok=True)
 
 
 # Radiative kernels used for the feedback calculation.
@@ -283,7 +281,7 @@ def compute_feedbacks(model):
     print(f"\n========== MODEL: {model} ==========")
 
     savefile = f"feedbacks_{model}.nc"
-    savepath = os.path.join(SAVE, savefile)
+    savepath = os.path.join(SAVE_DIR, savefile)
 
     # ---------------------------------
     # Read surface temperature
@@ -557,7 +555,7 @@ def compute_cloud_feedbacks(model):
     # ---------------------------------
 
     feedback_file = os.path.join(
-        SAVE,
+        SAVE_DIR,
         f"feedbacks_{model}.nc"
     )
 
@@ -866,7 +864,7 @@ def compute_cloud_feedbacks(model):
     # ---------------------------------
 
     savefile = os.path.join(
-        SAVE,
+        SAVE_DIR,
         f"cloud-feedbacks_{model}.nc"
     )
 
@@ -924,17 +922,17 @@ def merge_model_feedbacks(model):
     """Merge feedback and cloud-feedback datasets for one model."""
 
     feedback_file = os.path.join(
-        SAVE,
+        SAVE_DIR,
         f"feedbacks_{model}.nc",
     )
 
     cloud_file = os.path.join(
-        SAVE,
+        SAVE_DIR,
         f"cloud-feedbacks_{model}.nc",
     )
 
     merged_file = os.path.join(
-        SAVE,
+        SAVE_DIR,
         f"feedbacks-monthly_{model}.nc",
     )
 
@@ -982,7 +980,7 @@ def merge_model_feedbacks(model):
 # Merge all models
 # ---------------------------------
 model_files = sorted(
-    glob.glob(f"{SAVE}/feedbacks_*.nc")
+    glob.glob(f"{SAVE_DIR}/feedbacks_*.nc")
 )
 
 models = [
@@ -1011,7 +1009,7 @@ print(f"  longitude: {len(target_lon)} points")
 def remap_to_common_grid(model):
     """Interpolate one model's feedback dataset to the common grid."""
 
-    infile = os.path.join(SAVE, f"feedbacks-monthly_{model}.nc")
+    infile = os.path.join(SAVE_DIR, f"feedbacks-monthly_{model}.nc")
 
     if not os.path.exists(infile):
         print(f"[{model}] feedback file not found")
@@ -1058,11 +1056,11 @@ def remap_to_common_grid(model):
 # Remap all models
 # ---------------------------------
 
-model_files = sorted(glob.glob(f"{SAVE}/feedbacks-monthly_*.nc"))
+model_files = sorted(glob.glob(f"{SAVE_DIR}/feedbacks-monthly_*.nc"))
 
 if not model_files:
     raise FileNotFoundError(
-        f"No per-model feedback files found in {SAVE}"
+        f"No per-model feedback files found in {SAVE_DIR}"
     )
 
 models = [
@@ -1108,7 +1106,7 @@ ds_common_allmodels = ds_common_allmodels.sel(
 # ---------------------------------
 
 COMMON_GRID_FILE = os.path.join(
-    SAVE,
+    SAVE_DIR,
     "feedbacks_pergrid-monthly_common-grid_allmodels.nc",
 )
 
