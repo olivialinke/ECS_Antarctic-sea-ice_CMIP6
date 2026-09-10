@@ -8,22 +8,15 @@ The repository is designed to document and facilitate reproduction of the analys
 
 The scripts were developed and executed using Python and CDO. The radiative-kernel calculations use [ClimKern](https://github.com/tyfolino/climkern).
 
-#### Python Dependencies
+#### Installation
 
-The main Python packages required by the analysis are:
+Clone the repository and install the required Python packages:
 
-```text
-numpy
-xarray
-netCDF4
-dask
-scipy
-matplotlib
-psutil
-git+https://github.com/tyfolino/climkern.git
+```bash
+git clone https://github.com/olinke95/ECS_Antarctic-sea-ice_CMIP6.git
+cd ECS_Antarctic-sea-ice_CMIP6
+mamba create -f environment.yml
 ```
-
-CDO is also used for data preprocessing and must be installed separately.
 
 #### Data requirements
 
