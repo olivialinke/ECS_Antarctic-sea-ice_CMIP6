@@ -6,7 +6,7 @@ The workflow includes CMIP6 preprocessing, Antarctic sea-ice diagnostics, radiat
 
 The repository is designed to document and facilitate reproduction of the analysis. The original CMIP6 model data are not included because of their large volume and should be obtained from ESGF or, where applicable, through ESMValTool. Users without access to DKRZ can download the corresponding datasets from ESGF or ESMValTool and adapt the input paths in the scripts accordingly.
 
-The scripts were developed and executed using Python and CDO. The radiative-kernel calculations use [ClimKern](https://github.com/tyfolino/climkern).
+The scripts were developed and executed using Python and CDO. The radiative-kernel calculations use [ClimKern](https://github.com/tyfolino/climkern). ClimKern version must be at least 1.2.1.
 
 #### Installation
 
