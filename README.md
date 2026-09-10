@@ -13,7 +13,7 @@ The scripts were developed and executed using Python and CDO. The radiative-kern
 Clone the repository and install the required Python packages:
 
 ```bash
-git clone https://github.com/olinke95/ECS_Antarctic-sea-ice_CMIP6.git
+git clone https://github.com/olivialinke/ECS_Antarctic-sea-ice_CMIP6.git
 cd ECS_Antarctic-sea-ice_CMIP6
 mamba create -f environment.yml
 ```
